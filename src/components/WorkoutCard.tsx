@@ -12,7 +12,7 @@ export default function WorkoutCard({ workout }: { workout: Workout }) {
     >
       <div className="aspect-[16/9] overflow-hidden">
         <img
-          src={getImage(workout)} alt={workout.name}
+          src={getImage(workout)}
           alt={workout.name}
           loading="lazy"
           className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
