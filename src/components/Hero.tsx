@@ -21,7 +21,6 @@ export default function Hero() {
         </div>
 
         <div className="flex justify-center md:justify-end">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/banner.png"
             alt="Athlete training on a bike"

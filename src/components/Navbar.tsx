@@ -19,14 +19,10 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-base-300 bg-base-100/90 backdrop-blur">
       <nav className="mx-auto grid h-14 w-full max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-2 px-4 sm:px-6">
-        {/* Left: logo */}
         <Link href="/" className="flex items-center gap-2" aria-label="FitLog home">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.png" alt="FitLog logo" className="h-6 w-6 object-contain" />
           <span className="font-display-tight hidden text-sm font-bold tracking-wider sm:inline">FITLOG</span>
         </Link>
-
-        {/* Middle: links */}
         <ul className="flex items-center gap-1">
           {links.map((l) => (
             <li key={l.href}>
@@ -44,7 +40,6 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Right: badges */}
         <div className="flex items-center justify-end gap-2 text-xs font-semibold">
           <Link
             href="/my-plan"

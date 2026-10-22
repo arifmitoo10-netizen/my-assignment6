@@ -11,7 +11,6 @@ export default function WorkoutCard({ workout }: { workout: Workout }) {
       className="group overflow-hidden rounded-xl border border-base-300 bg-base-200 transition hover:-translate-y-1 hover:border-accent/60"
     >
       <div className="aspect-[16/9] overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={getImage(workout)} alt={workout.name}
           alt={workout.name}

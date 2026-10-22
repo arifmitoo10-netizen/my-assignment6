@@ -15,23 +15,20 @@ interface Props {
 export default function PlanItem({ workout, done, onRemove, onDone, onAddToPlan }: Props) {
   return (
     <article
-      className={`flex flex-col gap-4 rounded-xl border bg-base-200 p-3 sm:flex-row sm:items-center ${
-        done ? "border-accent/40" : "border-base-300"
-      }`}
+      className={`flex flex-col gap-4 rounded-xl border bg-base-200 p-3 sm:flex-row sm:items-center ${done ? "border-accent/40" : "border-base-300"
+        }`}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={getImage(workout)} 
+        src={getImage(workout)}
         alt={workout.name}
-       
+
         className="h-40 w-full rounded-lg object-cover sm:h-20 sm:w-28 sm:shrink-0"
       />
 
       <div className="min-w-0 flex-1">
         <h3
-          className={`font-display-tight truncate text-base font-semibold ${
-            done ? "text-base-content/50 line-through" : ""
-          }`}
+          className={`font-display-tight truncate text-base font-semibold ${done ? "text-base-content/50 line-through" : ""
+            }`}
         >
           {workout.name}
         </h3>

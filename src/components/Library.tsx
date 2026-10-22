@@ -33,11 +33,10 @@ export default function Library() {
     const q = query.trim().toLowerCase();
     const filtered = q
       ? workouts.filter(
-          (w) =>
-            w.name.toLowerCase().includes(q) || w.muscleGroups.some((m) => m.toLowerCase().includes(q))
-        )
+        (w) =>
+          w.name.toLowerCase().includes(q) || w.muscleGroups.some((m) => m.toLowerCase().includes(q))
+      )
       : workouts;
-    // Duration: shortest first. Calories & rating: highest first.
     return [...filtered].sort((a, b) =>
       sortBy === "duration" ? a.duration - b.duration : b[sortBy] - a[sortBy]
     );

@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { getWorkouts } from "@/lib/api";
+import { useEffect, useState } from "react";
+import { getWorkout } from "@/lib/api";
 import type { Workout } from "@/lib/types";
 import { PLAN_CAP, usePlan } from "@/context/PlanContext";
 import PlanItem from "@/components/PlanItem";
@@ -12,19 +12,34 @@ type Tab = "plan" | "saved";
 
 export default function MyPlanPage() {
   const { plan, saved, done, hydrated, addToPlan, removeFromPlan, removeFromSaved, markDone } = usePlan();
-  const [all, setAll] = useState<Workout[]>([]);
+  const [items, setItems] = useState<Record<number, Workout>>({});
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<Tab>("plan");
 
+  
   useEffect(() => {
-    getWorkouts()
-      .then(setAll)
-      .catch(() => setAll([]))
+    if (!hydrated) return;
+    const ids = Array.from(new Set([...plan, ...saved]));
+    const missing = ids.filter((id) => !items[id]);
+    if (missing.length === 0) {
+      setLoading(false);
+      return;
+    }
+    Promise.all(missing.map((id) => getWorkout(String(id))))
+      .then((results) =>
+        setItems((prev) => {
+          const next = { ...prev };
+          results.forEach((w) => {
+            if (w) next[w.id] = w;
+          });
+          return next;
+        })
+      )
       .finally(() => setLoading(false));
-  }, []);
+    
+  }, [hydrated, plan, saved]);
 
-  const byId = useMemo(() => new Map(all.map((w) => [w.id, w])), [all]);
-  const pick = (ids: number[]) => ids.map((id) => byId.get(id)).filter((w): w is Workout => !!w);
+  const pick = (ids: number[]) => ids.map((id) => items[id]).filter((w): w is Workout => !!w);
 
   const planItems = pick(plan);
   const savedItems = pick(saved);
@@ -115,3 +130,4 @@ export default function MyPlanPage() {
     </div>
   );
 }
+
