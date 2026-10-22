@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Check, Plus, X } from "lucide-react";
 import type { Workout } from "@/lib/types";
 import StatsRow from "./StatsRow";
+import { getImage } from "@/lib/images";
 
 interface Props {
   workout: Workout;
@@ -20,8 +21,9 @@ export default function PlanItem({ workout, done, onRemove, onDone, onAddToPlan 
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={workout.image}
+        src={getImage(workout)} 
         alt={workout.name}
+       
         className="h-40 w-full rounded-lg object-cover sm:h-20 sm:w-28 sm:shrink-0"
       />
 

@@ -9,6 +9,7 @@ import type { Workout } from "@/lib/types";
 import { PLAN_CAP, usePlan } from "@/context/PlanContext";
 import TagPills from "@/components/TagPills";
 import Spinner from "@/components/Spinner";
+import { getImage } from "@/lib/images";
 
 export default function WorkoutDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -60,7 +61,7 @@ export default function WorkoutDetailPage() {
       <div className="grid gap-8 md:grid-cols-2">
 
         <div className="overflow-hidden rounded-2xl border border-base-300 bg-base-200 md:self-start">
-          <img src={workout.image} alt={workout.name} className="h-full w-full object-cover" />
+          <img src={getImage(workout)} alt={workout.name} className="h-full w-full object-cover" />
         </div>
 
         <div className="space-y-6">

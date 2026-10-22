@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Workout } from "@/lib/types";
 import TagPills from "./TagPills";
 import StatsRow from "./StatsRow";
+import { getImage } from "@/lib/images";
 
 export default function WorkoutCard({ workout }: { workout: Workout }) {
   return (
@@ -12,7 +13,7 @@ export default function WorkoutCard({ workout }: { workout: Workout }) {
       <div className="aspect-[16/9] overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/card.png"
+          src={getImage(workout)} alt={workout.name}
           alt={workout.name}
           loading="lazy"
           className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
