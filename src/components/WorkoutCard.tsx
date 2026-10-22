@@ -12,7 +12,7 @@ export default function WorkoutCard({ workout }: { workout: Workout }) {
       <div className="aspect-[16/9] overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={workout.image}
+          src="/card.png"
           alt={workout.name}
           loading="lazy"
           className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
